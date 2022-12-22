@@ -1,20 +1,24 @@
 import time
 import random
 import argparse
+import threading
+import pyautogui
 
 
-VERSION = "ensuechaos CLI v1.0"
+VERSION = "ensuechaos CLI v2.0"
+MAX_X = pyautogui.size()[0] - 1
+MAX_Y = pyautogui.size()[1] - 1
+MOUSE_RITHM = 0.125
 
 
-def infinite_loop() -> None:
-    while True:
+def spam(initial_time: int, time_limit: int) -> None:
+    while time.time() - initial_time < time_limit:
         print(random.choice(("A", "a", " ")), end="")
 
 
-def timed_loop(seconds: int) -> None:
-    initial_time = time.time()
-    while time.time() - initial_time < seconds:
-        print(random.choice(("A", "a", " ")), end="")
+def mouse_action(initial_time: int, time_limit: int) -> None:
+    while time.time() - initial_time < time_limit:
+        pyautogui.moveTo(random.randint(0, MAX_X), random.randint(0, MAX_Y), MOUSE_RITHM)
 
 
 def main():
@@ -28,24 +32,19 @@ def main():
         version=VERSION
     )
     parser.add_argument(
-        "-t", "--time", 
+        "-d", "--duration", 
         type=int, 
         default=3, 
-        help="specify time of execution in seconds"
-    )
-    parser.add_argument(
-        "-i", "--infinite", 
-        action="store_true", 
-        help="make execution infinite"
+        help="specify duration in seconds"
     )
 
     args = parser.parse_args()
+    spam_thread = threading.Thread(target=spam, args=(time.time(), args.duration))
+    mouse_thread = threading.Thread(target=mouse_action, args=(time.time(), args.duration))
 
     try:
-        if args.infinite:
-            infinite_loop()
-        else:
-            timed_loop(args.time)
+        spam_thread.start()
+        mouse_thread.start()
     except KeyboardInterrupt:
         pass
 
