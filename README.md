@@ -1,8 +1,8 @@
 # ensuechaos - CLI tool
 
-This tool, uhm.... spams you. That's it.
+Just a useless tool that makes your screen go crazy.
 
 ### Arguments
 
-- --time, -t : duration of the spamming in seconds (default=5)
+- --time, -t : duration of the spamming in seconds (default=3)
 - --infinite, -i : makes the duration infinite, overriding --time
