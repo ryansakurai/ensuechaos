@@ -16,6 +16,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "pyautogui"
+]
 
 [project.urls]
 repository = "https://github.com/ryansakurai/ensuechaos.git"
