@@ -1,3 +1,11 @@
+"""
+ENSUECHAOS
+
+**FLASH WARNING**
+
+Just a useless tool that makes your screen go crazy.
+"""
+
 import time
 import random
 import argparse
@@ -29,7 +37,7 @@ def mouse_action(initial_time: int, time_limit: int) -> None:
 def main():
     parser = argparse.ArgumentParser(
         prog="ensuechaos",
-        description="Just a useless tool that makes your screen go crazy."
+        description="Just a useless tool that makes your screen go crazy (FLASH WARNING)"
     )
     parser.add_argument(
         "-v", "--version", 
