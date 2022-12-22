@@ -3,25 +3,27 @@ import random
 import argparse
 import threading
 import pyautogui
+from colorama import just_fix_windows_console, Fore
 
 
-VERSION = "ensuechaos CLI v2.0"
-CHARACTERS = ("A", "a", " ")
+VERSION = "ensuechaos CLI v2.1"
+BITS = ("0", "1")
 MAX_X = pyautogui.size()[0] - 1
 MAX_Y = pyautogui.size()[1] - 1
-MOUSE_RITHM = 0.125
+MOUSE_SPEED = 0.175
 
 
 def spam(initial_time: int, time_limit: int) -> None:
+    just_fix_windows_console()
     while time.time() - initial_time < time_limit:
-        print(random.choice(CHARACTERS), end="")
+        print(Fore.GREEN + random.choice(BITS), end="")
 
 
 def mouse_action(initial_time: int, time_limit: int) -> None:
     while time.time() - initial_time < time_limit:
         x = random.randint(0, MAX_X)
         y = random.randint(0, MAX_Y)
-        pyautogui.moveTo(x, y, MOUSE_RITHM)
+        pyautogui.moveTo(x, y, MOUSE_SPEED)
 
 
 def main():
@@ -42,8 +44,14 @@ def main():
     )
 
     args = parser.parse_args()
-    spam_thread = threading.Thread(target=spam, args=(time.time(), args.duration))
-    mouse_thread = threading.Thread(target=mouse_action, args=(time.time(), args.duration))
+    spam_thread = threading.Thread(
+        target=spam, 
+        args=(time.time(), args.duration)
+    )
+    mouse_thread = threading.Thread(
+        target=mouse_action, 
+        args=(time.time(), args.duration)
+    )
 
     try:
         spam_thread.start()
