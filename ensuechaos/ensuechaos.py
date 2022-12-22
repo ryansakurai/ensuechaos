@@ -31,7 +31,7 @@ def mouse_action(initial_time: int, time_limit: int) -> None:
     while time.time() - initial_time < time_limit:
         x = random.randint(0, MAX_X)
         y = random.randint(0, MAX_Y)
-        pyautogui.moveTo(x, y, MOUSE_SPEED)
+        pyautogui.moveTo(x, y, MOUSE_SPEED, pyautogui.easeOutElastic)
 
 
 def main():

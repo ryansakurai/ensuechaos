@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ensuechaos"
-version = "2.1"
+version = "2.2"
 description = "Just a useless tool that makes your screen go crazy (FLASH WARNING)"
 readme = "README.md"
 license = {file = "LICENSE"}
