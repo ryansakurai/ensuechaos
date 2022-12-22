@@ -6,6 +6,7 @@ import pyautogui
 
 
 VERSION = "ensuechaos CLI v2.0"
+CHARACTERS = ("A", "a", " ")
 MAX_X = pyautogui.size()[0] - 1
 MAX_Y = pyautogui.size()[1] - 1
 MOUSE_RITHM = 0.125
@@ -13,12 +14,14 @@ MOUSE_RITHM = 0.125
 
 def spam(initial_time: int, time_limit: int) -> None:
     while time.time() - initial_time < time_limit:
-        print(random.choice(("A", "a", " ")), end="")
+        print(random.choice(CHARACTERS), end="")
 
 
 def mouse_action(initial_time: int, time_limit: int) -> None:
     while time.time() - initial_time < time_limit:
-        pyautogui.moveTo(random.randint(0, MAX_X), random.randint(0, MAX_Y), MOUSE_RITHM)
+        x = random.randint(0, MAX_X)
+        y = random.randint(0, MAX_Y)
+        pyautogui.moveTo(x, y, MOUSE_RITHM)
 
 
 def main():
